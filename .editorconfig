@@ -1,0 +1,37 @@
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines
+[*]
+end_of_line = lf
+
+# 2 space indentation
+[*.html]
+indent_style = space
+indent_size = 2
+
+# 2 space indentation
+[*.js]
+indent_style = space
+indent_size = 2
+
+# 4 space indentation
+[*.json]
+indent_style = space
+indent_size = 4
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
+
+# 4 space indentation
+[*.cpp]
+indent_style = space
+indent_size = 4
+
+# 4 tab indentation
+[*.go]
+indent_style = tab
+indent_size = 4
+
