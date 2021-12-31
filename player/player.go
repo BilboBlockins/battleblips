@@ -259,13 +259,13 @@ func PlaceShips(s tcell.Screen, g *game.Game) {
 func ShowPlaceInstruct(s tcell.Screen, g *game.Game, plShips []ships.Shiper) {
 	if g.Cursor.PlacingShip && len(plShips) > 0 {
 		draw.EmitStr(
-			s, 4, 50, g.Options.DefStyle, 
+			s, 4, 30, g.Options.DefStyle, 
 			fmt.Sprintf("Placing %v | Click or Use Arrow Keys to Move | [SPACE] to Rotate | [ENTER] to Set", 
 			g.Cursor.HasShip.GetShip().Name))
 		
 			s.Show()
 	} else {
-		draw.EmitStr(s, 4, 50, g.Options.DefStyle, fmt.Sprintf("Hit [pps] to Deploy Your Shit..."))
+		draw.EmitStr(s, 4, 30, g.Options.DefStyle, fmt.Sprintf("Hit [P] to Deploy Your Ship..."))
 		s.Show()
 	}
 }

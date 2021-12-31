@@ -39,7 +39,7 @@ func main() {
 	opts:= game.GameOptions{
 		Players: 1,
 		Difficulty: 0,
-		GridDim: 10,
+		GridDim: 12,
 		DefStyle: defStyle,
 		AltStyle: altStyle,
 		HStyle: hStyle,
@@ -48,7 +48,7 @@ func main() {
 		OpStyle: defStyle,
 	}
 
-	shipList := []int{1,2,3,4,5}
+	shipList := []int{5,4,3,2,1}
 
 	g := game.Init(opts)
 	g = game.InitShips(g, shipList)
@@ -59,6 +59,7 @@ func main() {
 	s.EnableMouse()
 
 	draw.Update(s, g)
+	
 
 	player.PlaceShips(s, g)
 	player.AiPlaceShips(s, g)
@@ -247,190 +248,3 @@ func main() {
 	}
 
 }
-
-
-
-
-
-
-
-// func inputEvent()
-
-
-// func gridScreen(s tcell.Screen) {
-
-// 	// cruiser := ships.Cruiser{
-// 	// 	ships.Ship{
-// 	// 		Name: "Cruiser",
-// 	// 		Health: 3,
-// 	// 	},
-// 	// }
-
-// 	sub := ships.Battleship{
-// 		ships.Ship{
-// 			Name: "Sub",
-// 			Health: 3,
-// 		},
-// 	}
-// 	// w, h := s.Size()
-// 	s.Clear()
-// 	// drawGrid(s, defStyle, 10, 4, 2)
-	
-
-// 	gcx, gcy, gcx1, gcy1 := drawGrid(s, defStyle, 10, 4, 2)
-// 	g2cx, g2cy, g2cx1, g2cy1 := drawGrid(s, defStyle, 10, gcx1 + 8, 2) // 8 offset to keep cell line divisible by 4
-
-// 	s.Show()
-
-// 	defStyle := tcell.StyleDefault.
-// 		Background(tcell.ColorBlack).
-// 		Foreground(tcell.ColorGreen)
-
-
-
-// 	s.SetStyle(defStyle)
-
-// 	s.EnableMouse()
-
-// 	bn := 0
-// 	mx := -1
-// 	my := -1
-// 	xpos := -1
-// 	ypos := -1
-// 	xcoord := 0
-// 	ycoord := 0 
-
-// 	// drawIndex := 0
-	
-
-// 	for {
-// 		switch ev := s.PollEvent().(type) {
-// 			case *tcell.EventMouse:
-// 				mx, my = ev.Position()
-// 				if clickOnBoard(mx, my, gcx, gcy, gcx1, gcy1) || 
-// 					clickOnBoard(mx, my, g2cx, g2cy, g2cx1, g2cy1) {
-// 					switch ev.Buttons() {
-// 					case tcell.ButtonNone:
-// 						if bn > 0 {
-// 							switch bn {
-// 							case 1:
-// 								xpos, ypos, xcoord, ycoord = 
-// 								mapEvCoord(10,mx,my,4,2)
-// 								emitStr(s, 4, 25, defStyle, fmt.Sprintf("Hit on %v %v", string(rune(65 + xcoord)), ycoord))
-// 								s.Clear()
-								
-// 								drawGrid(s, defStyle, 10, 4, 2)
-// 								drawCursor(s, xpos, ypos, defStyle)
-								
-// 								sub.SetV(s, 14, 11, defStyle)
-// 								sub.SetH(s, 10, 7, defStyle)
-// 								drawBoardMarkers(s, g.Board.Grid, 4, 2)
-								
-// 								// sub.SetH(s, xpos, ypos, defStyle)
-// 							case 2:
-// 								xpos, ypos, xcoord, ycoord = 
-// 								mapEvCoord(10,mx,my,4,2)
-// 								sub.SetV(s, xpos, ypos, defStyle)
-// 								emitStr(s, 4, 25, defStyle, fmt.Sprintf("Hit on %v %v", string(rune(65 + xcoord)), ycoord))
-// 							case 3:	
-// 							}
-// 						}
-// 						bn = 0
-// 					case tcell.Button1:
-// 						bn = 1
-// 					case tcell.Button2:
-// 						bn = 2
-// 					case tcell.Button3:
-// 						bn = 3
-// 					}
-					
-// 					emitStr(s, 4, 26, defStyle, fmt.Sprintf("Got click on board @ - x: %v, y: %v, button: %v", mx, my, bn))
-// 					s.Show()
-// 				}
-// 			case *tcell.EventResize:
-// 				s.Clear()
-// 				drawGrid(s, defStyle, 10, 4, 2)
-// 				drawGrid(s, defStyle, 10, gcx1 + 8, 2)
-// 				s.Sync()
-// 			case *tcell.EventKey:
-
-// 				switch ev.Key() {
-// 					case tcell.KeyUp:
-// 						ycoord--
-// 						xpos, ypos = getCoordPosition(xcoord, ycoord, 4,2)
-
-
-// 						s.Clear()
-								
-// 						drawGrid(s, defStyle, 10, 4, 2)
-// 						drawCursor(s, xpos, ypos, defStyle)
-						
-// 						sub.SetV(s, 14, 11, defStyle)
-// 						sub.SetH(s, 10, 7, defStyle)
-// 						drawBoardMarkers(s, g.Board.Grid, 4, 2)
-
-// 						emitStr(s, 4, 32, defStyle, fmt.Sprintf("UP           "))
-
-// 					case tcell.KeyDown:
-						
-// 						ycoord++
-// 						xpos, ypos = getCoordPosition(xcoord, ycoord, 4,2)
-// 						s.Clear()
-								
-// 						drawGrid(s, defStyle, 10, 4, 2)
-// 						drawCursor(s, xpos, ypos, defStyle)
-						
-// 						sub.SetV(s, 14, 11, defStyle)
-// 						sub.SetH(s, 10, 7, defStyle)
-// 						drawBoardMarkers(s, g.Board.Grid, 4, 2)
-
-// 						emitStr(s, 4, 32, defStyle, fmt.Sprintf("DOWN           "))
-
-// 					case tcell.KeyRight:
-// 						xcoord++
-// 						xpos, ypos = getCoordPosition(xcoord, ycoord, 4,2)
-						
-// 						s.Clear()
-								
-// 						drawGrid(s, defStyle, 10, 4, 2)
-// 						drawCursor(s, xpos, ypos, defStyle)
-						
-// 						sub.SetV(s, 14, 11, defStyle)
-// 						sub.SetH(s, 10, 7, defStyle)
-// 						drawBoardMarkers(s, g.Board.Grid, 4, 2)
-
-// 						emitStr(s, 4, 32, defStyle, fmt.Sprintf("RIGHT           "))
-
-// 					case tcell.KeyLeft:
-// 						xcoord--
-// 						xpos, ypos = getCoordPosition(xcoord, ycoord, 4,2)
-
-// 						s.Clear()
-								
-// 						drawGrid(s, defStyle, 10, 4, 2)
-// 						drawCursor(s, xpos, ypos, defStyle)
-						
-// 						sub.SetV(s, 14, 11, defStyle)
-// 						sub.SetH(s, 10, 7, defStyle)
-// 						drawBoardMarkers(s, g.Board.Grid, 4, 2)
-
-// 						emitStr(s, 4, 32, defStyle, fmt.Sprintf("LEFT           "))
-
-// 					case tcell.KeyEnter:
-// 						g.Board.Grid[xcoord][ycoord] = 1
-// 						drawBoardMarkers(s, g.Board.Grid, 4, 2)
-// 						// emitStr(s, xpos, ypos, hitStyle, "●")
-// 						emitStr(s, 4, 32, defStyle, fmt.Sprintf("ENTER           "))
-// 						// drawIndex++
-// 					case tcell.KeyEscape:
-// 						s.Fini()
-// 						os.Exit(0)
-
-// 				}
-
-// 				emitStr(s, 4, 29, defStyle, fmt.Sprintf("got key event", ev.Name() ))
-// 				s.Show()
-// 		}
-// 	}
-
-// }
